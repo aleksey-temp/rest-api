@@ -1,6 +1,6 @@
 import { validationResult } from 'express-validator';
 
-import { ValidationException } from '../exceptions';
+import { ValidationException, NotFoundException } from '../exceptions';
 
 export class Controller {
   validate = req => {
@@ -32,5 +32,13 @@ export class Controller {
     }
 
     return obj;
+  };
+
+  resourceExists = async (model, id) => {
+    const doc = await model.findById(id);
+
+    if (!doc) throw new NotFoundException();
+
+    return doc;
   };
 }

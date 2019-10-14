@@ -1,2 +1,3 @@
-export * from './Controller';
-export * from './ProjectsController';
+export * from './base.controller';
+export * from './projects.controller';
+export * from './tasks.controller';

@@ -1,6 +1,5 @@
 import { Controller } from '.';
 import { Project } from '../models';
-import { ValidationException } from '../exceptions';
 
 class _ProjectsController extends Controller {
   getAllProjects = async (req, res) => {
@@ -17,6 +16,28 @@ class _ProjectsController extends Controller {
     await project.save();
 
     return res.status(201).send(project);
+  };
+
+  getProjectById = async (req, res) => {
+    this.validate(req);
+
+    const project = await this.resourceExists(Project, req.params.projectId);
+
+    return res.status(200).json(project);
+  };
+
+  deleteProject = async (req, res) => {
+    this.validate(req);
+
+    const project = await this.resourceExists(Project, req.params.projectId);
+
+    /**
+     * Associated tasks are removed
+     * in 'pre' hook on 'Project' model
+     */
+    await project.remove();
+
+    return res.status(204).json({});
   };
 }
 

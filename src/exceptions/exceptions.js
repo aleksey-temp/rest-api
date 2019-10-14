@@ -5,3 +5,5 @@ export class ValidationException extends Error {
     this.errors = errors;
   }
 }
+
+export class NotFoundException extends Error {}
