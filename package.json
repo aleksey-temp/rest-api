@@ -4,7 +4,8 @@
   "description": "Simple REST API with Express and MongoDB",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/index.js"
+    "dev": "nodemon --exec babel-node src/index.js",
+    "benchmark": "babel-node ./src/benchmark.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
     "nodemon": "^1.19.3"
   },
   "dependencies": {
+    "autocannon": "^4.5.2",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
